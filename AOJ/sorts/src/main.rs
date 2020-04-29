@@ -1,28 +1,48 @@
 use std::io::stdin;
 
+
+
+
 fn insertion_sort(array:&mut Vec<i32>){
-    //println!("{:?}",array);
-    print_array(array.to_vec());
-    for i in 1 .. array.len(){
-      //①位置決定
-      let mut insertpos:usize=114514;
-      for j in (0..i).rev(){
-          if array[j]<array[i]{
-            insertpos=j+1;
-            break;
-          }
-          if j==0{
-            insertpos=0;
-          }
-      }
-      //②挿入
-      for j in (insertpos..i).rev()
-      {
-        array.swap(j,j+1);
-      }
-      print_array(array.to_vec());
+  //println!("{:?}",array);
+  print_array(array.to_vec());
+  for i in 1 .. array.len(){
+    //①位置決定
+    let mut insertpos:usize=114514;
+    for j in (0..i).rev(){
+        if array[j]<array[i]{
+          insertpos=j+1;
+          break;
+        }
+        if j==0{
+          insertpos=0;
+        }
     }
-    //print_array(array.to_vec());
+    //②挿入
+    for j in (insertpos..i).rev()
+    {
+      array.swap(j,j+1);
+    }
+    print_array(array.to_vec());
+  }
+  //print_array(array.to_vec());
+}
+
+fn bubble_sort(array:&mut Vec<i32>)
+{
+  for i in (0..array.len()).rev(){
+    let mut current_pos=i;
+    for j in (1..array.len()).rev(){
+      if array[j]<array[j-1]
+      {
+        array.swap(j,j-1);
+        print_array(array.to_vec());
+      }
+      else {
+        break;
+      }
+    } 
+  }
 }
 
 fn main() {
@@ -31,7 +51,9 @@ fn main() {
   //println!("{}",n);
   //let mut array=vec![5,4,3,2,1];
   let mut array=readline_as_vec();
-  insertion_sort(&mut array);
+  //insertion_sort(&mut array);
+  bubble_sort(&mut array);
+
 }
 
 fn print_array(array:Vec<i32>){
